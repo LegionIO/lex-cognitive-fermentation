@@ -18,7 +18,7 @@ module Legion
           def ferment(substrate_id:, rate: nil, engine: nil, **)
             eng = engine || @default_engine
             sub = eng.ferment(substrate_id: substrate_id,
-                              rate: rate || Helpers::Constants::MATURATION_RATE)
+                              rate:         rate || Helpers::Constants::MATURATION_RATE)
             return { success: false, error: 'substrate not found' } unless sub
 
             { success: true, substrate: sub.to_h }

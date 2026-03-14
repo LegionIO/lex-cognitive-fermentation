@@ -139,8 +139,8 @@ RSpec.describe Legion::Extensions::CognitiveFermentation::Helpers::Substrate do
     it 'returns hash with all fields' do
       h = substrate.to_h
       expect(h).to include(:id, :substrate_type, :domain, :content, :potency,
-                            :maturity, :volatility, :stage, :ripe, :peak,
-                            :spoiled, :catalysts_applied, :created_at)
+                           :maturity, :volatility, :stage, :ripe, :peak,
+                           :spoiled, :catalysts_applied, :created_at)
     end
   end
 end

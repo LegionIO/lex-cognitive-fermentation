@@ -66,7 +66,7 @@ RSpec.describe Legion::Extensions::CognitiveFermentation::Helpers::Batch do
     it 'returns hash with batch stats' do
       h = batch.to_h
       expect(h).to include(:id, :domain, :substrate_count, :average_potency,
-                            :average_maturity, :ripe_count, :yield_rate)
+                           :average_maturity, :ripe_count, :yield_rate)
     end
   end
 end

@@ -49,6 +49,17 @@ module Legion
           def over_fermented? = @stage == :over_fermented
           def multi_catalyzed? = @catalysts_applied.uniq.size >= 3
 
+          STAGE_THRESHOLDS = {
+            (0.0...0.1)   => :inoculation,
+            (0.1...0.25)  => :primary_fermentation,
+            (0.25...0.4)  => :secondary_fermentation,
+            (0.4...0.55)  => :conditioning,
+            (0.55...0.7)  => :maturation,
+            (0.7...0.85)  => :aging,
+            (0.85...0.95) => :peak,
+            (0.95..)      => :over_fermented
+          }.freeze
+
           def age
             ((Time.now.utc - @created_at) / 60.0).round(2)
           end
@@ -75,16 +86,9 @@ module Legion
           private
 
           def advance_stage!
-            @stage = case @maturity
-                     when 0.0...0.1  then :inoculation
-                     when 0.1...0.25 then :primary_fermentation
-                     when 0.25...0.4 then :secondary_fermentation
-                     when 0.4...0.55 then :conditioning
-                     when 0.55...0.7 then :maturation
-                     when 0.7...0.85 then :aging
-                     when 0.85...0.95 then :peak
-                     else :over_fermented
-                     end
+            @stage = STAGE_THRESHOLDS.each do |range, stage|
+              break stage if range.cover?(@maturity)
+            end
           end
 
           def compute_potency

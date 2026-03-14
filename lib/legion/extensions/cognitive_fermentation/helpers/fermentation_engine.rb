@@ -90,21 +90,21 @@ module Legion
 
           def fermentation_report
             {
-              total_substrates: @substrates.size,
-              total_batches:    @batches.size,
-              overall_potency:  overall_potency,
-              potency_label:    Constants.label_for(POTENCY_LABELS, overall_potency),
-              overall_maturity: overall_maturity,
-              maturity_label:   Constants.label_for(MATURITY_LABELS, overall_maturity),
+              total_substrates:   @substrates.size,
+              total_batches:      @batches.size,
+              overall_potency:    overall_potency,
+              potency_label:      Constants.label_for(POTENCY_LABELS, overall_potency),
+              overall_maturity:   overall_maturity,
+              maturity_label:     Constants.label_for(MATURITY_LABELS, overall_maturity),
               overall_volatility: overall_volatility,
-              volatility_label: Constants.label_for(VOLATILITY_LABELS, overall_volatility),
-              yield_rate:       yield_rate,
-              ripe_count:       ripe_substrates.size,
-              peak_count:       peak_substrates.size,
-              spoiled_count:    spoiled_substrates.size,
+              volatility_label:   Constants.label_for(VOLATILITY_LABELS, overall_volatility),
+              yield_rate:         yield_rate,
+              ripe_count:         ripe_substrates.size,
+              peak_count:         peak_substrates.size,
+              spoiled_count:      spoiled_substrates.size,
               stage_distribution: stage_distribution,
-              batches:          @batches.values.map(&:to_h),
-              most_potent:      most_potent(limit: 3).map(&:to_h)
+              batches:            @batches.values.map(&:to_h),
+              most_potent:        most_potent(limit: 3).map(&:to_h)
             }
           end
 
